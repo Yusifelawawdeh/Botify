@@ -16,9 +16,13 @@ namespace Botify
             //options.AddArguments("--disable-gpu");
 
             var chromeDriver = new ChromeDriver();
-            chromeDriver.Navigate().GoToUrl("https://reddit.com");
+            chromeDriver.Navigate().GoToUrl("http://petrowiki.org");
 
-            var titles = chromeDriver.FindElementsByClassName("title");
+            chromeDriver.FindElementByXPath("//*[@id=\"searchInput\"]").Clear();
+            chromeDriver.Keyboard.SendKeys("geophysics");
+            chromeDriver.Keyboard.SendKeys(Keys.Enter);
+
+            var titles = chromeDriver.FindElementsByClassName("mw-search-result-heading");
 
             foreach (var title in titles)
             {
